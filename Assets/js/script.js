@@ -16,10 +16,9 @@ generateBtn.addEventListener("click", writePassword);
 // popup windows for password selections
 function generatePassword() {
 var passwordLength = prompt("How many Characters do you want?(between 8-128)")
-//failure on invalid length
+//failure on invalid length placed here to avoid going through all options before receiving an error
 if (passwordLength < 8 || passwordLength > 128){
   alert("Please insert a valid length between 8-128");
-    return;
 } else {
 var lowerCase = confirm ("Would you like lowercase letters?")
 var upperCase = confirm ("Would you like uppercase letters?")
@@ -44,8 +43,9 @@ var upSpecial= capitals+special;
 var numSpecial = numbersaray+special;
 
 let randomPassword = "";
-//nested forstatement for password length
+//nested for statement for password length
 for(var i=0; i<parseInt(passwordLength); i++){
+  // opted for else if with individual variables instead of a function array
  if (lowerCase&&upperCase&&numbers&&specialChar){
   let randomNumber = Math.floor(Math.random()* allChars.length + 1);
   randomPassword += allChars.charAt(randomNumber)
@@ -105,7 +105,7 @@ for(var i=0; i<parseInt(passwordLength); i++){
   }else if (specialChar){
     var randomNumber = Math.floor(Math.random() * specialChar.length);
     randomPassword += specialChar.substring(randomNumber, randomNumber +1);
-
+// returns a message if no options are selected
   }else {
     alert("Please select at least 1 option")
     return "invalid"
